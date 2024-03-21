@@ -1,0 +1,50 @@
+#include <iostream> 
+using namespace std; 
+class PayRoll { 
+public: 
+    PayRoll() : hourlyPayRate_(0.0), hoursWorked_(0), totalPay_(0.0) {} 
+ 
+    void setHourlyPayRate(double hourlyPayRate) { 
+        hourlyPayRate_ = hourlyPayRate; 
+    } 
+    void setHoursWorked(int hoursWorked) { 
+        if (hoursWorked > 60) { 
+            cerr << "Error: Hours worked cannot exceed 60." << endl; 
+            return; 
+        } 
+        hoursWorked_ = hoursWorked; 
+        calculateTotalPay(); 
+    } 
+    double getTotalPay() const { 
+        return totalPay_; 
+    } 
+private: 
+    double hourlyPayRate_; 
+    int hoursWorked_; 
+    double totalPay_; 
+     
+   void calculateTotalPay() { 
+        totalPay_ = hourlyPayRate_ * hoursWorked_; 
+    } 
+}; 
+int main() { 
+    const int numEmployees = 7; 
+    PayRoll employees[numEmployees]; 
+    double hourlyPayRate; 
+    int hoursWorked; 
+     
+   for (int i = 0; i < numEmployees; ++i) { 
+        cout << "Enter the hourly pay rate for employee " << i + 1 << ": $"; 
+        cin >> hourlyPayRate; 
+        employees[i].setHourlyPayRate(hourlyPayRate); 
+ 
+        cout << "Enter the number of hours worked for employee " << i + 1 << ": "; 
+        cin >> hoursWorked; 
+        employees[i].setHoursWorked(hoursWorked); 
+    } 
+    cout << "\nGross pay for each employee:" << endl; 
+    for (int i = 0; i < numEmployees; ++i) { 
+        cout << "Employee " << i + 1 << ": $" << employees[i].getTotalPay() <<endl; 
+    } 
+    return 0; 
+} 
