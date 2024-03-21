@@ -1,0 +1,46 @@
+#include <iostream> 
+#include <string> 
+using namespace std; 
+class Employee { 
+private: 
+    string name; 
+    int idNumber; 
+    string department; 
+    string position; 
+ 
+public: 
+    Employee(string empName, int empId, string empDept, string empPos) 
+            : name(empName), idNumber(empId), department(empDept), position(empPos) {} 
+ 
+    Employee(string empName, int empId) 
+            : name(empName), idNumber(empId), department(""), position("") {} 
+ 
+    Employee() 
+            : name(""), idNumber(0), department(""), position("") {} 
+ 
+    void setName(std::string empName) { name = empName; } 
+    void setIdNumber(int empId) { idNumber = empId; } 
+    void setDepartment(std::string empDept) { department = empDept; } 
+    void setPosition(std::string empPos) { position = empPos; } 
+ 
+    string getName() const { return name; } 
+    int getIdNumber() const { return idNumber; } 
+    string getDepartment() const { return department; } 
+    string getPosition() const { return position; } 
+}; 
+ 
+int main() { 
+    Employee emp1("Susan Meyers"    , 47899,      "Accounting",     "Vice President"); 
+    Employee emp2("Mark Jones"     , 39119,       "IT",             "Programmer"); 
+    Employee emp3("Joy Rogers"     , 81774,       "Manufacturing",      "Engineer"); 
+    cout<<"                 ""Name         ""ID Number"   "        Department   "                "Position"<<endl; 
+ 
+    cout << "Employee 1: " << emp1.getName() << ", ID: " << emp1.getIdNumber() << ", Department: " 
+              << emp1.getDepartment() << ", Position: " << emp1.getPosition() << endl; 
+    cout << "Employee 2: " << emp2.getName() << ", ID: " << emp2.getIdNumber() << ", Department: " 
+              << emp2.getDepartment() << ", Position: " << emp2.getPosition() << endl; 
+    cout << "Employee 3: " << emp3.getName() << ", ID: " << emp3.getIdNumber() << ", Department: " 
+              << emp3.getDepartment() << ", Position: " << emp3.getPosition() << endl; 
+ 
+    return 0; 
+} 
