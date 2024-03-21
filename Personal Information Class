@@ -1,0 +1,53 @@
+#include <iostream> 
+#include <string> 
+using namespace std; 
+ 
+class PersonalData { 
+private: 
+    string name; 
+    string address; 
+    int age; 
+    string phoneNumber; 
+ 
+public: 
+    PersonalData(string n, string addr, int a, string phone) 
+            : name(n), address(addr), age(a), phoneNumber(phone) {} 
+ 
+            string getName() const { return name; } 
+    string getAddress() const { return address; } 
+    int getAge() const { return age; } 
+    string getPhoneNumber() const { return phoneNumber; } 
+ 
+    void setName(string n) { name = n; } 
+    void setAddress(string addr) { address = addr; } 
+    void setAge(int a) { age = a; } 
+    void setPhoneNumber(string phone) { phoneNumber = phone; } 
+}; 
+ 
+int main() { 
+    PersonalData myInfo("shahed", "Gaziantep", 20, " 0 531 677 53 38"); 
+ 
+    PersonalData friend1("Nour", "Hollanda ", 21, "32 465 18 16 09"); 
+ 
+    PersonalData friend2("Rayan ", "Belgium", 20, "32 465 9963 71"); 
+ 
+    cout << "My Information:" << endl; 
+    cout << "Name: " << myInfo.getName() << endl; 
+    cout << "Address: " << myInfo.getAddress() << endl; 
+    cout << "Age: " << myInfo.getAge() << endl; 
+    cout << "Phone Number: " << myInfo.getPhoneNumber() << endl; 
+ 
+    cout << "\nFriend/Family Member 1 Information:" << endl; 
+    cout << "Name: " << friend1.getName() << endl; 
+    cout << "Address: " << friend1.getAddress() << endl; 
+    cout << "Age: " << friend1.getAge() << endl; 
+    cout << "Phone Number: " << friend1.getPhoneNumber() << endl; 
+ 
+    cout << "\nFriend/Family Member 2 Information:" << endl; 
+    cout << "Name: " << friend2.getName() << endl; 
+    cout << "Address: " << friend2.getAddress() << endl; 
+    cout << "Age: " << friend2.getAge() << endl; 
+    cout << "Phone Number: " << friend2.getPhoneNumber() << endl; 
+ 
+    return 0; 
+} 
