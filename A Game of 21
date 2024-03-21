@@ -1,0 +1,41 @@
+#include <iostream> 
+#include <cstdlib> 
+#include <ctime> 
+using namespace std; 
+class Die { 
+public: 
+    Die() { srand(time(0)); } 
+ 
+    int roll() { return rand() % 6 + 1; } 
+}; 
+int main() { 
+    Die die; 
+ 
+    int playerTotal = 0; 
+    int computerTotal = 0; 
+    char choice; 
+    do { 
+        int computerRoll1 = die.roll(); 
+        int computerRoll2 = die.roll(); 
+        computerTotal = computerRoll1 + computerRoll2; 
+ 
+        int playerRoll1 = die.roll(); 
+        int playerRoll2 = die.roll(); 
+        playerTotal = playerRoll1 + playerRoll2; 
+ 
+        cout << "Computer rolls: " << computerRoll1 << " and " << computerRoll2 << " (Total: " << computerTotal << ")" << endl; 
+        cout << "Player rolls: " << playerRoll1 << " and " << playerRoll2 << " (Total: " << playerTotal << ")" << endl; 
+ 
+        if (playerTotal > 21) { 
+            cout << "Bust! Computer wins." << endl; 
+        } else if (computerTotal > 21 || playerTotal > computerTotal) { 
+            cout << "Player wins!" << endl; 
+        } else { 
+            cout << "Computer wins." << endl; 
+        } 
+        cout << "Do you want to roll again? (y/n): "; 
+        cin >> choice; 
+    } while (choice == 'y'); 
+ 
+    return 0; 
+} 
