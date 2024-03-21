@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class Date {
+private:
+    int month;
+    int day;
+    int year;
+
+public:
+    Date(int m, int d, int y) : month(m), day(d), year(y) {}
+
+    void printDate1() const {
+        cout << month << "/" << day << "/" << year << endl;
+    }
+
+    void printDate2() const {
+        string monthNames[] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        cout << monthNames[month - 1] << " " << day << ", " << year << endl;
+    }
+
+    void printDate3() const {
+        string monthNames[] = {"", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+        cout << day << " " << monthNames[month] << " " << year << endl;
+    }
+};
+
+int main() {
+    int month, day, year;
+    cout << "Enter month, day, and year separated by spaces: ";
+    cin >> month >> day >> year;
+
+    Date date(month, day, year);
+
+    cout << "Date in format 1: ";
+    date.printDate1();
+
+    cout << "Date in format 2: ";
+    date.printDate2();
+
+    cout << "Date in format 3: ";
+    date.printDate3();
+
+    return 0;
+}
