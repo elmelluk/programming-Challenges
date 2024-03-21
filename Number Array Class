@@ -1,0 +1,74 @@
+#include <iostream> 
+#include <iomanip> 
+using namespace std; 
+class FloatArray {public: FloatArray(int size) { 
+        size_ = size; 
+        array_ = new float[size]; 
+    } 
+    ~FloatArray() { 
+        delete[] array_; 
+    } 
+    void storeNumber(int index, float number) { 
+        if (index >= 0 && index < size_) { 
+            array_[index] = number; 
+        } else { 
+            cerr << "Invalid index." << endl; 
+        } 
+    } 
+    float retrieveNumber(int index) { 
+        if (index >= 0 && index < size_) { 
+            return array_[index]; 
+        } else { 
+            cerr << "Invalid index." << endl; 
+            return 0.0; 
+        } 
+    } 
+    float getHighest() { 
+        float highest = array_[0]; 
+        for (int i = 1; i < size_; ++i) { 
+            if (array_[i] > highest) { 
+                highest = array_[i]; 
+            } 
+        } 
+        return highest; 
+    } 
+    float getLowest() { 
+        float lowest = array_[0]; 
+        for (int i = 1; i < size_; ++i) { 
+            if (array_[i] < lowest) { 
+                lowest = array_[i]; 
+            } 
+        } 
+        return lowest; 
+    } 
+    float getAverage() { 
+        float sum = 0.0; 
+        for (int i = 0; i < size_; ++i) { 
+            sum += array_[i]; 
+        } 
+        return sum / size_; 
+    } 
+private: 
+    int size_; 
+    float* array_; 
+}; 
+int main() { 
+    int size; 
+    cout << "Enter the size of the array: "; 
+    cin >> size; 
+ 
+    FloatArray numbers(size); 
+ 
+    for (int i = 0; i < size; ++i) { 
+        float number; 
+        cout << "Enter number for index " << i << ": "; 
+        cin >> number; 
+        numbers.storeNumber(i, number); 
+    } 
+    cout << fixed << setprecision(2); 
+    cout << "Highest value: " << numbers.getHighest() << endl; 
+    cout << "Lowest value: " << numbers.getLowest() << endl; 
+    cout << "Average value: " << numbers.getAverage() << endl; 
+ 
+    return 0; 
+} 
