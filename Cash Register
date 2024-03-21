@@ -1,0 +1,55 @@
+#include <iostream> 
+#include <iomanip> 
+using namespace std; 
+class InventoryItem { 
+private: 
+    string name; 
+    int onHand; 
+    double cost; 
+ 
+public: 
+    InventoryItem() : name(""), onHand(0), cost(0.0) {} 
+    InventoryItem(const string& n, int o, double c) : name(n), onHand(o), cost(c) {} 
+ 
+    string getName() const { return name; } 
+    int getOnHand() const { return onHand; } 
+    double getCost() const { return cost; } 
+    void setOnHand(int o) { onHand = o; } 
+}; 
+class CashRegister { 
+private: 
+    InventoryItem item; 
+ 
+public: 
+    CashRegister(const InventoryItem& i) : item(i) {} 
+ 
+    void purchaseItem(int quantity) { 
+        if (quantity < 0) { 
+            cout << "Invalid quantity. Please enter a non-negative value." << endl; 
+            return; 
+        } 
+        double unitPrice = item.getCost() * 1.30;  
+       double subTotal = unitPrice * quantity; 
+        double tax = subTotal * 0.06;  
+       double total = subTotal + tax; 
+ 
+        cout << "Purchase Subtotal: $" << fixed << setprecision(2) << subTotal << endl; 
+        cout << "Sales Tax: $" << fixed << setprecision(2) << tax << endl; 
+        cout << "Total: $" << fixed << setprecision(2) << total << endl; 
+ 
+        item.setOnHand(item.getOnHand() - quantity); 
+    } 
+}; 
+ 
+int main() { 
+    InventoryItem item("Shirt", 50, 10.0); 
+    CashRegister register1(item); 
+ 
+    int quantity; 
+    cout << "Enter the quantity of shirts you want to purchase: "; 
+    cin >> quantity; 
+ 
+    register1.purchaseItem(quantity); 
+ 
+    return 0; 
+} 
