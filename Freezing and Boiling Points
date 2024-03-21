@@ -1,0 +1,62 @@
+#include <iostream> 
+using namespace std; 
+class Temperature { 
+private: 
+    double temperature; 
+public: 
+    Temperature() : temperature(0) {} 
+    Temperature(double temp) : temperature(temp) {} 
+ 
+    void setTemperature(double temp) { 
+        temperature = temp; 
+    } 
+    double getTemperature() const { 
+        return temperature; 
+    } 
+    bool isEthylFreezing() const { 
+        return temperature <= -173; 
+    } 
+    bool isEthylBoiling() const { 
+        return temperature >= 172; 
+    } 
+    bool isOxygenFreezing() const { 
+        return temperature <= -362; 
+    } 
+    bool isOxygenBoiling() const { 
+        return temperature >= -306; 
+    } 
+    bool isWaterFreezing() const { 
+        return temperature <= 32; 
+    } 
+    bool isWaterBoiling() const { 
+        return temperature >= 212; 
+    } 
+}; 
+int main() { 
+    double temp; 
+    cout << "Enter a temperature: "; 
+    cin >> temp; 
+ 
+    Temperature t(temp); 
+    cout << "Substances that will freeze at " << temp << " degrees:" << endl; 
+    if (t.isEthylFreezing()) { 
+        cout << "- Ethyl Alcohol" << endl; 
+    } 
+    if (t.isOxygenFreezing()) { 
+        cout << "- Oxygen" << endl; 
+    } 
+    if (t.isWaterFreezing()) { 
+        cout << "- Water" << endl; 
+    } 
+    cout << "Substances that will boil at " << temp << " degrees:" << endl; 
+    if (t.isEthylBoiling()) { 
+        cout << "- Ethyl Alcohol" << endl; 
+    } 
+    if (t.isOxygenBoiling()) { 
+        cout << "- Oxygen" << endl; 
+    } 
+    if (t.isWaterBoiling()) { 
+        cout << "- Water" << endl; 
+    } 
+    return 0; 
+} 
