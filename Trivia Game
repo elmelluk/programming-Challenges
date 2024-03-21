@@ -1,0 +1,63 @@
+#include <iostream> 
+#include <string> 
+using namespace std; 
+class Question {private: 
+    string question; 
+    string answers[4]; 
+    int correctAnswer; 
+public: 
+    Question() : question(""), correctAnswer(0) { 
+        for (int i = 0; i < 4; ++i) { 
+            answers[i] = ""; 
+        } 
+    } 
+    Question(const string& q, const string& a1, const string& a2, const string& a3, const string& a4, int correct) 
+            : question(q), correctAnswer(correct - 1) { 
+        answers[0] = a1; 
+        answers[1] = a2; 
+        answers[2] = a3; 
+        answers[3] = a4; 
+    } 
+ 
+    string getQuestion() const { return question; } 
+ 
+    string getAnswer(int index) const { return answers[index]; } 
+ 
+    int getCorrectAnswer() const { return correctAnswer; } 
+}; 
+ 
+int main() { 
+    Question questions[10]; 
+ 
+    questions[0] = Question("What is the capital of France?", 
+                            "Paris", "Berlin", "London", "Rome", 1); 
+    questions[1] = Question("Which planet is known as the Red Planet?", 
+                            "Mars", "Venus", "Mercury", "Jupiter", 1); 
+    int scores[2] = {0, 0}; 
+ 
+    for (int i = 0; i < 2; ++i) { 
+        cout << "Player " << (i + 1) << "'s turn:" << endl; 
+        for (int j = 0; j < 5; ++j) { 
+            cout << "Question " << (j + 1) << ": " << questions[j + (i * 5)].getQuestion() << endl; 
+            for (int k = 0; k < 4; ++k) { 
+                cout << k + 1 << ". " << questions[j + (i * 5)].getAnswer(k) << endl; 
+            } 
+            int answer; 
+            cout << "Your answer: "; 
+            cin >> answer; 
+            if (answer - 1 == questions[j + (i * 5)].getCorrectAnswer()) { 
+                scores[i]++; 
+            } 
+        } 
+    } 
+    cout << "Player 1's score: " << scores[0] << endl; 
+    cout << "Player 2's score: " << scores[1] << endl; 
+ 
+    if (scores[0] > scores[1]) { 
+        cout << "Player 1 wins!" << endl; 
+    } else if (scores[1] > scores[0]) { 
+        cout << "Player 2 wins!" << endl; 
+    } else { 
+        cout << "It's a tie!" << endl; 
+    }return 0; 
+} 
