@@ -1,0 +1,58 @@
+#include <iostream> 
+#include <cstdlib>  
+#include <ctime>    
+using namespace std; 
+class Coin { 
+public: 
+    Coin() { 
+      
+       srand(static_cast<unsigned int>(time(0))); 
+ 
+        toss(); 
+    } 
+    void toss() { 
+        int randomNumber = rand() % 2; 
+         
+       if (randomNumber == 0) { 
+            sideUp = "heads"; 
+        } else { 
+            sideUp = "tails"; 
+        } 
+    } 
+    string getSideUp() const { 
+        return sideUp; 
+    } 
+private: 
+    string sideUp; 
+}; 
+int main() { 
+    Coin quarter, dime, nickel; 
+    double balance = 0.0; 
+ 
+    cout << "Starting balance: $" << balance << endl; 
+ 
+    while (balance < 1.0) { 
+        quarter.toss(); 
+        dime.toss(); 
+        nickel.toss(); 
+ 
+        cout << "Quarter: " << quarter.getSideUp() << ", Dime: " << dime.getSideUp() << ", Nickel: " << nickel.getSideUp() << endl; 
+ 
+        if (quarter.getSideUp() == "heads") { 
+            balance += 0.25; 
+        } 
+        if (dime.getSideUp() == "heads") { 
+            balance += 0.10; 
+        } 
+        if (nickel.getSideUp() == "heads") { 
+            balance += 0.05; 
+        } 
+        cout << "Current balance: $" << balance << endl; 
+    } 
+    if (balance == 1.0) { 
+        cout << "Congratulations, you win!" << endl; 
+    } else { 
+        cout << "Sorry, you lose." << endl; 
+    } 
+    return 0; 
+} 
