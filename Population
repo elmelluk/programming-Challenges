@@ -1,0 +1,51 @@
+#include <iostream> 
+#include <stdexcept> 
+using namespace std; 
+ 
+class Population { 
+public: 
+    Population(int population, int births, int deaths) { 
+        if (population < 1 || births < 0 || deaths < 0) { 
+            throw std::invalid_argument("Invalid input. Population must be greater than 0, and births and deaths must be non-negative."); 
+        } 
+        population_ = population; 
+        births_ = births; 
+        deaths_ = deaths; 
+    } 
+ 
+    double getBirthRate() const { 
+        return static_cast<double>(births_) / population_; 
+    } 
+ 
+    double getDeathRate() const { 
+        return static_cast<double>(deaths_) / population_; 
+    } 
+ 
+private: 
+    int population_; 
+    int births_; 
+    int deaths_; 
+}; 
+ 
+int main() { 
+    int population, births, deaths; 
+ 
+    cout << "Enter the population: "; 
+    cin >> population; 
+ 
+    cout << "Enter the number of births: "; 
+    cin >> births; 
+ 
+    cout << "Enter the number of deaths: "; 
+    cin >> deaths; 
+ 
+    try { 
+        Population pop(population, births, deaths); 
+        cout << "Birth rate: " << pop.getBirthRate() << endl; 
+        cout << "Death rate: " << pop.getDeathRate() << endl; 
+    } catch (const invalid_argument& e) { 
+        cerr << "Error: " << e.what() << endl; 
+    } 
+ 
+    return 0; 
+} 
