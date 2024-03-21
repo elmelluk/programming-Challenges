@@ -1,0 +1,39 @@
+#include <iostream> 
+using namespace std; 
+class TestScores { 
+public: 
+    TestScores() : score1_(0), score2_(0), score3_(0) {} 
+ 
+    void setScore1(int score) { score1_ = score; } 
+    void setScore2(int score) { score2_ = score; } 
+    void setScore3(int score) { score3_ = score; } 
+ 
+    int getScore1() const { return score1_; } 
+    int getScore2() const { return score2_; } 
+    int getScore3() const { return score3_; } 
+ 
+    double getAverage() const { 
+        return (score1_ + score2_ + score3_) / 3.0; 
+    } 
+ 
+private: 
+    int score1_; 
+    int score2_; 
+    int score3_; 
+}; 
+ 
+int main() { 
+    TestScores scores; 
+ 
+    int score1, score2, score3; 
+    cout << "Enter three test scores: "; 
+    cin >> score1 >> score2 >> score3; 
+ 
+    scores.setScore1(score1); 
+    scores.setScore2(score2); 
+    scores.setScore3(score3); 
+ 
+    cout << "Average score: " << scores.getAverage() << endl; 
+ 
+    return 0; 
+} 
