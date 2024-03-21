@@ -1,0 +1,50 @@
+#include <iostream> 
+#include <vector> 
+#include <string> 
+using namespace std; 
+ 
+class InventoryItem { 
+public: 
+    InventoryItem(const std::string& name, int quantity, double price) 
+            : name_(name), quantity_(quantity), price_(price) {} 
+ 
+    string getName() const { return name_; } 
+    int getQuantity() const { return quantity_; } 
+    double getPrice() const { return price_; } 
+private: 
+    string name_; 
+    int quantity_; 
+    double price_; 
+}; 
+class Inventory { 
+public: 
+    void addItem(const string& name, int quantity, double price) { 
+        items_.emplace_back(name, quantity, price); 
+    } 
+    void displayInventory() const { 
+        for (const auto& item : items_) { 
+            cout << "Name: " << item.getName() 
+                      << ", Quantity: " << item.getQuantity() 
+                      << ", Price: $" << item.getPrice() << endl; 
+        } 
+    } 
+    double calculateTotalValue() const { 
+        double totalValue = 0.0; 
+        for (const auto& item : items_) { 
+            totalValue += item.getQuantity() * item.getPrice(); 
+        } 
+        return totalValue; 
+    } 
+private: 
+    vector<InventoryItem> items_; 
+}; 
+int main() { 
+    Inventory storeInventory; 
+    storeInventory.addItem("Shirt", 10, 19.99); 
+    storeInventory.addItem("Pants", 5, 29.99); 
+    storeInventory.addItem("Shoes", 8, 49.99); 
+ 
+    storeInventory.displayInventory(); 
+    cout << "Total Inventory Value: $" << storeInventory.calculateTotalValue() << endl; 
+    return 0; 
+} 
